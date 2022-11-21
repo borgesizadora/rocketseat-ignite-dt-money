@@ -1,13 +1,18 @@
 import { Header } from '~/components/Header'
 import { Summary } from '~/components/Summary'
-import { useTransactionsContext } from '~/contexts/TransactionsContext'
+import { TransactionContext } from '~/contexts/TransactionsContext'
 import { dataFormatter, priceFormatter } from '~/utils/formatter'
+import { useContextSelector } from 'use-context-selector'
 
 import { SearchForm } from './components/SearchForm'
 import * as S from './styles'
 
 export const Transactions = () => {
-  const { transactionList } = useTransactionsContext()
+  const transactionList = useContextSelector(
+    TransactionContext,
+    (context) => context.transactionList
+  )
+
   return (
     <div>
       <Header />
