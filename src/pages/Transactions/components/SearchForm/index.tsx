@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { useForm } from 'react-hook-form'
 
 import { TransactionContext } from '~/contexts/TransactionsContext'
@@ -15,7 +16,7 @@ const searchFormSchema = zod.object({
 
 type SearchFormInputs = zod.infer<typeof searchFormSchema>
 
-export const SearchForm = () => {
+const SearchFormComponent = () => {
   const fetchTransactions = useContextSelector(
     TransactionContext,
     (context) => context.fetchTransactions
@@ -43,3 +44,5 @@ export const SearchForm = () => {
     </S.SearchFormContainer>
   )
 }
+
+export const SearchForm = memo(SearchFormComponent)
